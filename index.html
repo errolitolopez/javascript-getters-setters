@@ -57,7 +57,7 @@
             <div class="row row-cols-1">
                 <div class="col">
                     <div class="form-group">
-                        <label for="inputTextArea" class="font-weight-bold">Array</label>
+                        <label for="inputTextArea" class="font-weight-bold">Fields</label>
                         <TextArea class="form-control" id="inputTextArea" rows="10"
                             placeholder='e.g name,age,location (comma separated)'></TextArea>
                     </div>
@@ -120,14 +120,14 @@
         var className = document.getElementById("className").value;
 
         if (className == "") {
-            alert("Please enter class name.");
+            alert("Please input class name.");
             return;
         }
 
         var inputTextArea = document.getElementById("inputTextArea").value;
 
         if (inputTextArea == "") {
-            alert("Please enter array.");
+            alert("Please input fields.");
             return;
         }
 
@@ -137,7 +137,6 @@
         output = output.concat("class " + className + " {\n");
         output = output.concat("\tconstructor() {\n\n");
 
-        console.log(stringArray.split(","));
 
         var fields = stringArray.split(",");
 
@@ -168,7 +167,7 @@
 
         for (let i = 0; i < fields.length; i++) {
 
-            output = output.concat("\t\t\t" + fields[i] + " = response." + fields[i] + "\n");
+            output = output.concat("\t\t\t" + fields[i] + " = response." + fields[i] + ";\n");
 
         }
 
@@ -205,7 +204,7 @@
         output = output.concat("\t}\n");
         output = output.concat("};");
 
-        console.log(output);
+        // console.log(output);
 
         document.getElementById("outputTextArea").value = output;
 
