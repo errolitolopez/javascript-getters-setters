@@ -163,10 +163,37 @@
             output = output.concat("\t\t};\n\n");
         }
 
+
+        output = output.concat("\t\tthis.set = function (response) {\n");
+
+        for (let i = 0; i < fields.length; i++) {
+
+            output = output.concat("\t\t\t" + fields[i] + " = response." + fields[i] + "\n");
+
+        }
+
+        output = output.concat("\t\t};\n\n");
+
+        output = output.concat("\t\tthis.get = function () {\n\n");
+
+        output = output.concat("\t\t\treturn JSON.parse('{ ");
+
+        for (let i = 0; i < fields.length; i++) {
+
+            output = output.concat('"' + fields[i] + '":"' + "'" + ' + ' + fields[i] + ' + ' + "'" + '", ');
+
+        }
+
+        output = output.slice(0, -2) + "}');\n\n";
+
+        output = output.concat("\t\t};\n\n");
+
+
+
         output = output.concat("\t\tthis.toString = function () {\n");
         output = output.concat('\t\t\treturn "' + className + '[');
 
-        var toStringOutPut = ""
+        var toStringOutPut = "";
 
         for (let i = 0; i < fields.length; i++) {
             toStringOutPut = toStringOutPut.concat('", ' + fields[i]) + '=" + ' + fields[i] + ' + ';
@@ -176,7 +203,9 @@
         output = output.concat(toStringOutPut.slice(3).slice(0, -1) + ' "]";\n');
         output = output.concat("\t\t}\n");
         output = output.concat("\t}\n");
-        output = output.concat("}");
+        output = output.concat("};");
+
+        console.log(output);
 
         document.getElementById("outputTextArea").value = output;
 
